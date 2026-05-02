@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  // State untuk mengontrol menu mobile
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // 1. Efek untuk menangani scroll otomatis jika URL mengandung #contact saat halaman dimuat
   useEffect(() => {
     if (window.location.hash === "#contact") {
       setTimeout(() => {
@@ -18,30 +19,29 @@ export default function Navbar() {
         }
       }, 100);
     }
+    // Tutup menu saat berpindah halaman
+    setIsMenuOpen(false);
   }, [pathname]);
 
-  // 2. Fungsi khusus untuk mengklik Home & Logo (Membersihkan URL dari #contact)
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (pathname === "/") {
-      e.preventDefault(); 
-      window.history.pushState(null, "", "/"); // Hapus hash dari URL
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Gulir ke atas
+      e.preventDefault();
+      window.history.pushState(null, "", "/");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setIsMenuOpen(false);
     }
   };
 
-  // 3. Fungsi khusus untuk mengklik Contact (Menambahkan #contact ke URL)
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-
+    setIsMenuOpen(false);
     if (pathname === "/") {
-      // Jika di Home: Ubah URL jadi /#contact lalu scroll
       window.history.pushState(null, "", "/#contact");
       const contactSection = document.getElementById("contact");
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Jika di halaman lain: Paksa pindah ke Home membawa hash
       router.push("/#contact");
     }
   };
@@ -52,59 +52,77 @@ export default function Navbar() {
         <div className="flex justify-between h-16 items-center">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center"> 
+          <div className="flex-shrink-0 flex items-center">
             <Link href="/" onClick={handleHomeClick} className="flex items-center gap-3">
               <img
                 src="/assets/logo/logo.jpg"
-                alt="Logo KulinerKita"
+                alt="Logo"
                 className="h-10 w-10 rounded-full object-cover border-2 border-[#EA580C]"
               />
-              <span className="text-xl font-extrabold text-[#7F1D1D] hidden sm:block">
+              <span className="text-xl font-extrabold text-[#7F1D1D]">
                 Ands.<span className="text-[#EA580C]">Shop</span>
               </span>
             </Link>
           </div>
 
-          {/* Link Navigasi Desktop */}
-          <div className="hidden sm:flex sm:space-x-8">            
+          {/* Hamburger Button (Mobile Only) */}
+          <div className="flex items-center sm:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-[#7D6356] hover:text-[#EA580C] focus:outline-none p-2"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden sm:flex sm:space-x-8">
+            <Link href="/" onClick={handleHomeClick} className={`px-1 pt-1 border-b-2 text-sm font-medium ${pathname === "/" ? "border-[#EA580C] text-[#EA580C]" : "border-transparent text-[#7D6356]"}`}>
+              Home
+            </Link>
+            <Link href="/products" className={`px-1 pt-1 border-b-2 text-sm font-medium ${pathname.startsWith("/products") ? "border-[#EA580C] text-[#EA580C]" : "border-transparent text-[#7D6356]"}`}>
+              Katalog Menu
+            </Link>
+            <a href="/#contact" onClick={handleContactClick} className="px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-[#7D6356]">
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="sm:hidden bg-white border-t border-[#F0E6DD] animate-in slide-in-from-top duration-300">
+          <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
               href="/"
               onClick={handleHomeClick}
-              className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${
-                pathname === "/"
-                  ? "border-[#EA580C] text-[#EA580C]"
-                  : "border-transparent text-[#7D6356] hover:text-[#EA580C] hover:border-[#EA580C]"
-              }`}
+              className={`block px-3 py-4 rounded-md text-base font-medium ${pathname === "/" ? "bg-[#FFFBF7] text-[#EA580C]" : "text-[#7D6356]"}`}
             >
               Home
             </Link>
-            
             <Link
               href="/products"
-              className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${
-                pathname.startsWith("/products")
-                  ? "border-[#EA580C] text-[#EA580C]"
-                  : "border-transparent text-[#7D6356] hover:text-[#EA580C] hover:border-[#EA580C]"
-              }`}
+              className={`block px-3 py-4 rounded-md text-base font-medium ${pathname.startsWith("/products") ? "bg-[#FFFBF7] text-[#EA580C]" : "text-[#7D6356]"}`}
             >
               Katalog Menu
             </Link>
-
-            {/* Tombol Contact - Perhatikan href berubah jadi /#contact */}
             <a
               href="/#contact"
               onClick={handleContactClick}
-              className="cursor-pointer inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-[#7D6356] hover:text-[#EA580C] hover:border-[#EA580C] transition-colors"
+              className="block px-3 py-4 rounded-md text-base font-medium text-[#7D6356]"
             >
               Contact
             </a>
           </div>
-
-          <div className="flex items-center sm:hidden">
-            <span className="text-sm text-[#7D6356]">Menu</span>
-          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }

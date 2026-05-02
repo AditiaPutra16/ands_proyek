@@ -12,8 +12,8 @@ export default function ContactSection() {
           </h2>
           <div className="w-24 h-1 bg-[#EA580C] mx-auto rounded-full mb-6"></div>
           <p className="text-[#7D6356] max-w-2xl mx-auto text-lg">
-            Punya pertanyaan atau ingin melakukan pemesanan dalam jumlah besar?
-            Jangan ragu untuk menghubungi kami melalui kontak di bawah ini.
+            Punya pertanyaan atau ingin melakukan pemesanan dalam jumlah besar? <br />
+            Hubungi kontak di bawah ini!
           </p>
         </div>
 
@@ -77,12 +77,12 @@ export default function ContactSection() {
               <div className="ml-4">
                 <h4 className="text-lg font-bold text-[#5C3D2E]">WhatsApp</h4>
                 <a
-                  href="https://wa.me/6281234567890"
+                  href="https://wa.me/6281314239100"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#7D6356] mt-1 hover:text-[#EA580C] transition-colors flex items-center"
                 >
-                  +62 812-3456-7890                  
+                  +62 813-1423-9100
                 </a>
               </div>
             </div>

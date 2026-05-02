@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 // 1. Ubah import dari Inter menjadi Poppins
-import { Poppins } from "next/font/google"; 
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 // 2. Konfigurasi font Poppins
 // Kita memasukkan berbagai ketebalan (weight) dari tipis hingga sangat tebal
-const poppins = Poppins({ 
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"], 
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap", // Memastikan teks tetap terlihat saat font sedang dimuat
 });
 
@@ -23,9 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="scroll-smooth">
+    <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth">
       {/* 3. Terapkan poppins.className ke dalam tag body */}
-      <body className={`${poppins.className} antialiased selection:bg-[#EA580C] selection:text-white`}>
+      <body
+        className={`${poppins.className} antialiased selection:bg-[#EA580C] selection:text-white`}
+      >
         <Navbar />
         {children}
       </body>

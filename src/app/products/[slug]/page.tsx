@@ -82,7 +82,7 @@ export default async function ProductDetailPage({
 
             {/* Tombol Pesan (Diarahkan ke WhatsApp) */}
             <a
-              href={`https://wa.me/6282214783810?text=${waMessage}`}
+              href={`https://wa.me/6281314239100?text=${waMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#EA580C] text-white font-bold rounded-xl hover:bg-[#C2410C] transition-all shadow-lg shadow-orange-200 hover:-translate-y-1"

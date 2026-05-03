@@ -10,10 +10,10 @@ import ReviewSection from "@/sections/ReviewSection";
 import ProductSection from "@/sections/ProductSection";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Home",
-  description: "Jelajahi seluruh koleksi hidangan istimewa kami.",
-};
+// export const metadata = {
+//   title: "Home",
+//   description: "Jelajahi seluruh koleksi hidangan istimewa kami.",
+// };
 
 export default function Home() {
   

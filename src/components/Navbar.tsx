@@ -60,7 +60,7 @@ export default function Navbar() {
                 className="h-10 w-10 rounded-full object-cover border-2 border-[#EA580C]"
               />
               <span className="text-xl font-extrabold text-[#7F1D1D]">
-                Ands.<span className="text-[#EA580C]">Shop</span>
+                Ands.<span className="text-[#EA580C]">Bakery</span>
               </span>
             </Link>
           </div>

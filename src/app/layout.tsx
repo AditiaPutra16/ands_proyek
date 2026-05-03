@@ -13,8 +13,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Ands Shop",
+  title: "Ands.Bakery",
   description: "Temukan berbagai hidangan terbaik kami.",
+  icons: {
+    icon: "/assets/logo/logo.jpg",
+    shortcut: "/assets/logo/logo.jpg",
+    apple: "/assets/logo/logo.jpg",
+  },
 };
 
 export default function RootLayout({

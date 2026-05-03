@@ -81,7 +81,7 @@ export const dummyProducts: Product[] = [
     name: "Kaya Bun",
     category: "Roti",
     slug: "kaya-bun",
-    description: "Roti lembut isi selai.",
+    description: "Roti lembut isi selai sarikaya.",
     price: "Rp 7.000",
     imageUrl: "/assets/product/15.png",
     isFeatured: false,
@@ -95,7 +95,7 @@ export const dummyProducts: Product[] = [
       "Roti lembut isi krim susu keju dengan taburan keju cheddar parutan.",
     price: "Rp 9.000",
     imageUrl: "/assets/product/2.jpg",
-    isFeatured: false,
+    isFeatured: true,
   },
   {
     id: 6,
@@ -105,7 +105,7 @@ export const dummyProducts: Product[] = [
     description: "Roti lembut isi krim susu keju dan selai blueberry.",
     price: "Rp 9.000",
     imageUrl: "/assets/product/3.jpg",
-    isFeatured: true,
+    isFeatured: false,
   },
   {
     id: 7,

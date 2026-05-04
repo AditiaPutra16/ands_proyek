@@ -105,7 +105,7 @@ export default function ContactSection() {
               <div className="ml-4">
                 <h4 className="text-lg font-bold text-[#5C3D2E]">Instagram</h4>
                 <a
-                  href="https://instagram.com/"
+                  href="https://www.instagram.com/__andsbakehuis?igsh=Z2Fyc2NsejBybDU0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#7D6356] mt-1 hover:text-[#EA580C] transition-colors"
